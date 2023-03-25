@@ -1,0 +1,6 @@
+AddonInfo
+{
+	addonTitle				"BrainBread 2 Announcer (Angelscript Plugin)"
+	addonDescription		"Deatmatch styled announcer, ported from BrainBread 2."
+	addonAuthor				"JonnyBoy0719"
+}

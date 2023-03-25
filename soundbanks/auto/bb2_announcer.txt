@@ -1,0 +1,4 @@
+SoundbankList
+{
+	"auto"		"bb2_announcer.bnk"
+}
