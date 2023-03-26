@@ -78,7 +78,12 @@ namespace BB2
 			case 0:
 			{
 				if ( pAlwaysEndOnTimeLimit.GetBool() )
+				{
+					// Empty data
+					NetData nData;
+					Network::CallFunction( "BB2_OnTimeRanOut", nData );
 					ThePresident.ForceWinState( STATE_WIN );
+				}
 			}
 			break;
 		}
