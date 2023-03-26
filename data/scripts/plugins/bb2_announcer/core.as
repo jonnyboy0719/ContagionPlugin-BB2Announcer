@@ -29,7 +29,6 @@ namespace BB2
 	CGameAnnouncer @pGameAnnouncer = CGameAnnouncer();
 	int m_iLastTime = 0;
 	float m_flTimeLimit = 0.0f;
-	CASConVar@ pAlwaysEndOnTimeLimit = null;
 
 	//------------------------------------------------------------------------------------------------------------------------//
 
@@ -44,7 +43,6 @@ namespace BB2
 
 	void SetupTimeLeft()
 	{
-		@BB2::pAlwaysEndOnTimeLimit = ConVar::Create( "bb2_announcer_endontimelimit", "0", "When the time runs out, End the match.", true, 0, true, 1 );
 		CASConVarRef @mp_timelimit = ConVar::Find( "mp_timelimit" );
 		if ( mp_timelimit is null ) return;
 		m_flTimeLimit = (mp_timelimit.GetFloat() * 60);
@@ -77,13 +75,9 @@ namespace BB2
 			case 5: pGameAnnouncer.PlayEvent( k_eCountdown5Sec ); szMsg = "5 Seconds";  break;
 			case 0:
 			{
-				if ( pAlwaysEndOnTimeLimit.GetBool() )
-				{
-					// Empty data
-					NetData nData;
-					Network::CallFunction( "BB2_OnTimeRanOut", nData );
-					ThePresident.ForceWinState( STATE_WIN );
-				}
+				// Empty data
+				NetData nData;
+				Network::CallFunction( "BB2_OnTimeRanOut", nData );
 			}
 			break;
 		}
