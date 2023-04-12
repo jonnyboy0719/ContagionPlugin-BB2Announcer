@@ -6,7 +6,7 @@
 
 void OnPluginInit()
 {
-	PluginData::SetVersion( "1.0" );
+	PluginData::SetVersion( "1.2" );
 	PluginData::SetAuthor( "JonnyBoy0719" );
 	PluginData::SetName( "BrainBread 2 Announcer" );
 	BB2::InitCore();

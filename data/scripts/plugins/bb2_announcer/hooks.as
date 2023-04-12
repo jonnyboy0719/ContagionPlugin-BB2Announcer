@@ -6,6 +6,7 @@ namespace BB2
 		{
 			Events::Player::OnPlayerKilled.Hook( @OnPlayerKilled_BB2 );
 			Events::Player::OnPlayerConnected.Hook( @OnPlayerConnected_BB2 );
+			Events::Player::PlayerSay.Hook( @PlayerSay_BB2 );
 		}
 
 		//------------------------------------------------------------------------------------------------------------------------//
@@ -38,5 +39,27 @@ namespace BB2
 			return HOOK_CONTINUE;
 		}
 
+		//------------------------------------------------------------------------------------------------------------------------//
+
+		HookReturnCode PlayerSay_BB2( CTerrorPlayer@ pPlayer, CASCommand@ pArgs )
+		{
+			string arg1 = pArgs.Arg( 1 );
+			if ( Utils.StrEql( arg1, "timeleft" ) )
+			{
+				int seconds, hours, minutes;
+				seconds = BB2::TimeLeft();
+				minutes = seconds / 60;
+				hours = minutes / 60;
+
+				string remaining_time = "{chartreuse}00{white}:{chartreuse}00";
+				if ( hours > 0 )
+					remaining_time = "{chartreuse}" + formatInt( hours, '0', 1 ) + "{white}:{chartreuse}" + formatInt( int(minutes%60), '0', 2 ) + "{white}:{chartreuse}" + int(seconds%60);
+				else
+					remaining_time = "{chartreuse}" + formatInt( int(minutes%60), '0', 2 ) + "{white}:{chartreuse}" + formatInt( int(seconds%60), '0', 2 );
+				Chat.PrintToChat( all, "Timeleft: " + remaining_time );
+				return HOOK_HANDLED;
+			}
+			return HOOK_CONTINUE;
+		}
 	}
 }

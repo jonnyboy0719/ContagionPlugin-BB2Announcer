@@ -59,6 +59,16 @@ namespace BB2
 
 	//------------------------------------------------------------------------------------------------------------------------//
 
+	int TimeLeft()
+	{
+		float fltimeleft = m_flTimeLimit - Globals.GetCurrentTime();
+		int val = int(fltimeleft);
+		if ( val < 0 ) return 0;
+		return val;
+	}
+
+	//------------------------------------------------------------------------------------------------------------------------//
+
 	void Think()
 	{
 		float fltimeleft = m_flTimeLimit - Globals.GetCurrentTime();
